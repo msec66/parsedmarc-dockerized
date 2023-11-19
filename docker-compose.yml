@@ -20,7 +20,10 @@ services:
   parsedmarc:
     image: patschi/parsedmarc:latest
     volumes:
-      - ./data/conf/parsedmarc/:/etc/parsedmarc/
+      #- ./data/conf/parsedmarc/:/etc/parsedmarc/
+      - ./files:/input:ro
+      - ./output_files:/output
+    command: parsedmarc -c /parsedmarc.ini /input/*
       - ./data/data/geoipupdate/:/usr/share/GeoIP:z,ro
     restart: always
     networks:
